@@ -1,12 +1,30 @@
 // frontend/src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import FinancePage from './components/FinancePage';
-import HomePage from './components/HomePage';
+import DashboardPage from './components/DashboardPage';
 import SignUpPage from './components/SignUpPage';
+import HomePage from './components/HomePage';
+
+function ProtectedRoute({ isLoggedIn, children }) {
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+  return children;
+}
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <Router>
       <div>
@@ -24,14 +42,34 @@ function App() {
             <li>
               <Link to="/signup">SignUp</Link>
             </li>
+            {isLoggedIn && (
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            )}
           </ul>
         </nav>
 
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/finance" element={<FinancePage />} />
+          <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/finance"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <FinancePage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </Router>

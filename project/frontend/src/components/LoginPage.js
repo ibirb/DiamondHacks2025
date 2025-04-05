@@ -1,10 +1,12 @@
 // frontend/src/components/LoginPage.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function LoginPage() {
+function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +26,8 @@ function LoginPage() {
         setMessage('Login successful!');
         setUsername('');
         setPassword('');
-        // You might want to redirect the user to another page here
+        onLogin(); // Call the onLogin prop to update the login state
+        navigate('/dashboard'); // Redirect to the dashboard
       } else {
         setMessage(data.error || 'Login failed.');
       }
