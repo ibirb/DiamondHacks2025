@@ -1,11 +1,12 @@
 // frontend/src/App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import FinancePage from './components/FinancePage';
 import DashboardPage from './components/DashboardPage';
 import SignUpPage from './components/SignUpPage';
-import HomePage from './components/HomePage';
+import ExpenseLogPage from './components/ExpenseLogPage'; // Import ExpenseLogPage
+
 
 function ProtectedRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
@@ -16,44 +17,25 @@ function ProtectedRoute({ isLoggedIn, children }) {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState(null); 
 
-  const handleLogin = () => {
+  const handleLogin = (userId) => { // Update handleLogin to accept userId
     setIsLoggedIn(true);
+    setLoggedInUserId(userId); // Set the loggedInUserId
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setLoggedInUserId(null);
   };
 
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/finance">Finance</Link>
-            </li>
-            <li>
-              <Link to="/signup">SignUp</Link>
-            </li>
-            {isLoggedIn && (
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            )}
-          </ul>
-        </nav>
-
         <Routes>
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
           <Route
             path="/dashboard"
             element={
@@ -67,6 +49,14 @@ function App() {
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <FinancePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/expenses"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <ExpenseLogPage userId={loggedInUserId} />
               </ProtectedRoute>
             }
           />
