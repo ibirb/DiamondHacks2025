@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const connectToDatabase = require('./db');
 const { createUser } = require('./controllers/userController'); // Import the createUser function
+const { loginUser } = require('./controllers/userController'); // Import the loginUser function
+
 
 const app = express();
 const port = 3001;
@@ -34,6 +36,23 @@ app.post('/api/users', async (req, res) => {
     res.status(201).json(newUser); // Respond with the created user
   } catch (error) {
     res.status(500).json({ error: 'Failed to create user' });
+  }
+});
+
+
+// API endpoint to login a user
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password are required' });
+  }
+
+  try {
+    const user = await loginUser(username, password);
+    res.status(200).json(user); // Respond with the user
+  } catch (error) {
+    res.status(401).json({ error: error.message }); // Unauthorized
   }
 });
 
