@@ -72,3 +72,9 @@ body {
     border-radius: 15px;
     box-sizing: border-box;
   }
+
+  .logo-container {
+    display: flex;
+    height: 100px;
+    width: 100px;
+}
