@@ -1,0 +1,20 @@
+/* DashboardPage.css */
+.over-budget {
+  color: red;
+}
+
+.close-to-budget {
+  color: orange;
+}
+
+.within-budget {
+  color: green;
+}
+
+.react-calendar__tile__date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

@@ -121,3 +121,24 @@ abbr[title] {
   color: white;
 }
 
+/* DashboardPage.css */
+.over-budget {
+  background-color: red;
+  color: white;
+}
+
+.close-to-budget {
+  background-color: yellow;
+  color: black;
+}
+
+.within-budget {
+  background-color: green;
+  color: white;
+}
+
+.react-calendar__tile {
+    border-radius: 10px;
+}
+
+

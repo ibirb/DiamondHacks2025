@@ -1,0 +1,93 @@
+/* frontend/src/components/SideNavBar.css */
+.side-nav-bar {
+    width: 200px; /* Default expanded width */
+    background-color: #f0f0f0;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: width 0.3s ease-in-out; /* Smooth transition for width */
+    overflow-x: hidden; /* Hide horizontal overflow */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start (left) */
+  }
+  
+  .side-nav-bar.collapsed {
+    width: 0px; /* Collapsed width */
+    padding: 0px; /* Reduced padding */
+    align-items: center; /* Center items when collapsed */
+  }
+  
+  .side-nav-bar.collapsed .nav-link-text {
+    display: none;
+  }
+  
+  .side-nav-bar.collapsed .nav-toggle-button {
+    display: none;
+  }
+  
+  .side-nav-bar nav {
+    transition: opacity 0.3s ease-in-out;
+    width: 100%; /* Take full width when expanded */
+  }
+  
+  .side-nav-bar .collapsed-nav {
+    opacity: 0;
+    width: 0; /* Collapse the width of the nav */
+    overflow: hidden; /* Hide the overflowing content */
+  }
+  
+  .side-nav-bar nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%; /* Take full width when expanded */
+  }
+  
+  .side-nav-bar nav ul li {
+    margin-bottom: 10px;
+    width: 100%; /* Take full width when expanded */
+  }
+  
+  .side-nav-bar nav ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+    width: 100%; /* Take full width when expanded */
+  }
+  
+  .side-nav-bar nav ul li a:hover {
+    background-color: #ddd;
+  }
+  
+  .nav-toggle-button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .expand-nav-button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+  }
+  
