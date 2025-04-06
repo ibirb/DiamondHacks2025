@@ -122,4 +122,8 @@ body {
     font-size: 18px;
   }
 
-  
+.logo-container {
+    display: flex;
+    height: 100px;
+    width: 100px;
+}
