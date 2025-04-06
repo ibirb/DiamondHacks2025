@@ -5,6 +5,8 @@ const connectToDatabase = require('./db');
 const { createUser } = require('./controllers/userController'); // Import the createUser function
 const { loginUser } = require('./controllers/userController'); // Import the loginUser function
 const { createExpense, getExpensesByUser } = require('./controllers/expenseController'); // Import expense controller
+const chatBotRoutes = require('./routes/chatBotRoutes');
+require('dotenv').config(); 
 
 const app = express();
 const port = 3001;
@@ -99,6 +101,8 @@ app.get('/api/expenses/:userId', async (req, res) => {
     res.status(500).json({ error: 'Failed to get expenses' });
   }
 });
+
+app.use('/api', chatBotRoutes);
 
 // Start the server
 app.listen(port, () => {

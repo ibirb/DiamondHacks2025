@@ -8,7 +8,7 @@ import SignUpPage from './components/SignUpPage';
 import ExpenseLogPage from './components/ExpenseLogPage'; // Import ExpenseLogPage
 import ChatBotPage from './components/ChatBotPage'; // Import ChatBotPage
 import SideNavBar from './components/SideNavBar'; // Import SideNavBar
-
+import './App.css';
 
 function ProtectedRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
@@ -40,9 +40,9 @@ function App() {
 
   return (
     <Router>
-      <div style={{ display: 'flex' }}> {/* Add a flex container */}
+      <div className="app-container"> {/* Add a flex container */}
         {isLoggedIn && <SideNavBar onToggle={handleNavBarToggle} />} {/* Render SideNavBar if logged in */}
-        <div style={{ flexGrow: 1, marginLeft: contentMargin }}> {/* Content area */}
+        <div className="content-container" style={{ marginLeft: contentMargin }}> {/* Content area */}
           <Routes>
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="/signup" element={<SignUpPage />} />
@@ -85,5 +85,7 @@ function App() {
     </Router>
   );
 }
+
+
 
 export default App;
