@@ -76,18 +76,10 @@ input.daily-spending-goal-input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 15px;
   box-sizing: border-box;
-=======
-  input[type="number"] {
-    width: 40%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-sizing: border-box;
   }
 
   .logo-container {
     display: flex;
     height: 100px;
     width: 100px;
->>>>>>> origin/main
-}
+  }

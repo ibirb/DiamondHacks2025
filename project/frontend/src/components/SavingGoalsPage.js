@@ -92,6 +92,10 @@ function SavingGoalsPage({ userId }) {
     ? Math.min((activeGoal.amountSaved / activeGoal.totalAmount) * 100, 100)
     : 0;
 
+  const formattedAmountSaved = activeGoal ? activeGoal.amountSaved.toFixed(2) : '0.00';
+  const formattedTotalAmount = activeGoal ? activeGoal.totalAmount.toFixed(2) : '0.00';
+  
+
   return (
     <div>
       <h1>Saving Goals</h1>

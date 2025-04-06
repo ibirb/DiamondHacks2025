@@ -56,7 +56,7 @@ async function updateAmountSavedAutomatically(userId) {
     console.log(`totalAllowedSpending: ${totalAllowedSpending}`);
 
     // Calculate the amount saved
-    const amountSaved = Math.max(0, totalAllowedSpending - totalSpent);
+    const amountSaved = parseFloat(Math.max(0, totalAllowedSpending - totalSpent).toFixed(2));
     console.log(`amountSaved: ${amountSaved}`);
 
     // Update the amountSaved in the database
