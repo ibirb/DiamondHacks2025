@@ -40,6 +40,9 @@ function SignUpPage() {
 
   return (
     <div>
+    <div className="logo-container">
+        <img src="/breadbox.png" alt="Title"/>
+    </div>
     <div className="login-form-container">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
