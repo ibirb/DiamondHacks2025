@@ -6,6 +6,7 @@ const { createUser } = require('./controllers/userController'); // Import the cr
 const { loginUser } = require('./controllers/userController'); // Import the loginUser function
 const { createExpense, getExpensesByUser } = require('./controllers/expenseController'); // Import expense controller
 const chatBotRoutes = require('./routes/chatBotRoutes');
+const savingGoalRoutes = require('./routes/savingGoalRoutes');
 require('dotenv').config(); 
 
 const app = express();
@@ -16,6 +17,8 @@ app.use(cors());
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
+
+app.use('/api/saving-goals', savingGoalRoutes);
 
 // Connect to MongoDB before starting the server
 connectToDatabase();

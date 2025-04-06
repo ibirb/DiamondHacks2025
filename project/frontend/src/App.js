@@ -59,7 +59,7 @@ function App() {
               path="/saving-goals"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <SavingGoalsPage />
+                  <SavingGoalsPage userId={loggedInUserId} />
                 </ProtectedRoute>
               }
             />
