@@ -97,13 +97,14 @@ select#category {
   
   th,
   td {
-    border: 1px solid #ccc; /* Add borders to cells */
+    border: 1px solid #636e5a; /* Add borders to cells */
     padding: 8px; /* Add padding to cells */
     text-align: left; /* Left-align text in cells */
+    background-color: #bbceb2;
   }
   
   th {
-    background-color: #bbceb2; /* Add background color to header cells */
+    background-color: #95a587; /* Add background color to header cells */
   }
   
   /* Add margin to the table cells */
