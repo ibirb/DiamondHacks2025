@@ -1,0 +1,128 @@
+.container {
+    display: flex;
+}
+
+.split1 {
+    background-color: #a6b896;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 450px;
+    height: 500px;
+    margin-right: 20px;
+    float: left;
+}
+
+.split2 {
+    background-color: #a6b896;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 450px;
+    height: 500px;
+    margin-left: 20px;
+    float: right;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: left;
+  }
+
+.add-expense-button  {
+    background-color: #bbceb2;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 50%;
+    height: 40px;
+    font-size: 18px;
+}
+
+.add-expense-button:hover {
+    background-color: #849378;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+    height: 50px;
+  }
+
+select#category {
+    transform: scale(1.2); /* scales the dropdown */
+    transform-origin: left; /* ensures it scales from the left */
+    margin-left: 10px; /* optional: align it to the left */
+}
+
+.expense-log-container {
+    display: flex; /* Make it a flex container */
+    gap: 20px; /* Add some space between the columns */
+    width: 100%;
+  }
+  
+  .expense-form-column {
+    flex: 1; /* Take up equal space */
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  .expense-list-column {
+    flex: 1; /* Take up equal space */
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  .expense-table-container {
+    overflow-y: auto; /* Make the container scrollable vertically */
+    max-height: 450px; /* Set a maximum height for the container */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  table {
+    width: 100%; /* Make the table take up the full width */
+    border-collapse: collapse; /* Collapse borders */
+  }
+  
+  th,
+  td {
+    border: 1px solid #ccc; /* Add borders to cells */
+    padding: 8px; /* Add padding to cells */
+    text-align: left; /* Left-align text in cells */
+  }
+  
+  th {
+    background-color: #bbceb2; /* Add background color to header cells */
+  }
+  
+  /* Add margin to the table cells */
+  .date-column {
+    width: 20%; /* Adjust as needed */
+    padding-right: 10px;
+  }
+  
+  .category-column {
+    width: 25%; /* Adjust as needed */
+    padding-right: 10px;
+  }
+  
+  .name-column {
+    width: 40%; /* Adjust as needed */
+    padding-right: 10px;
+  }
+  
+  .cost-column {
+    width: 15%; /* Adjust as needed */
+    padding-right: 10px;
+  }
