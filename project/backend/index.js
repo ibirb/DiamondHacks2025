@@ -56,6 +56,21 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.get('/api/users/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const user = await User.findOne({ _id: userId }); // Find the user by _id
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(200).json(user); // Respond with the user data
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get user' });
+  }
+});
+
+
 
 // API endpoint to create a new expense
 app.post('/api/expenses', async (req, res) => {
