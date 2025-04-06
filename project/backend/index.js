@@ -7,6 +7,7 @@ const { loginUser } = require('./controllers/userController'); // Import the log
 const { createExpense, getExpensesByUser } = require('./controllers/expenseController'); // Import expense controller
 const chatBotRoutes = require('./routes/chatBotRoutes');
 const savingGoalRoutes = require('./routes/savingGoalRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 const { updateAmountSavedAutomatically } = require('./controllers/savingGoalController');
 require('dotenv').config(); 
 
@@ -20,6 +21,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/saving-goals', savingGoalRoutes);
+
+app.use('/api/dashboard', dashboardRoutes);
 
 // Connect to MongoDB before starting the server
 connectToDatabase();

@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import the calendar styles
-import './DashboardPage.css'; // Import the new CSS file
+import 'react-calendar/dist/Calendar.css';
+import './DashboardPage.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
+let globalDailySpendingGoal = 0; // Variable outside of the component
 
 function DashboardPage({ userId }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -22,8 +24,8 @@ function DashboardPage({ userId }) {
     ],
   });
   const [showDailyExpenses, setShowDailyExpenses] = useState(false);
-  const [dailySpendingGoal, setDailySpendingGoal] = useState(0);
-  const [calendarViewDate, setCalendarViewDate] = useState(new Date()); // New state variable
+  const [calendarViewDate, setCalendarViewDate] = useState(new Date());
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchExpenses = async () => {
     try {
@@ -33,23 +35,25 @@ function DashboardPage({ userId }) {
       setAllExpenses(data || []);
     } catch (error) {
       console.error('Error fetching expenses:', error);
-    }
-  };
-
-  const fetchUser = async () => {
-    try {
-      const response = await fetch(`http://localhost:3001/api/users/${userId}`);
-      const data = await response.json();
-      console.log("User data from backend:", data);
-      setDailySpendingGoal(data.dailySpendingGoal || 0);
-    } catch (error) {
-      console.error('Error fetching user:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchExpenses();
-    fetchUser();
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/api/dashboard/${userId}`);
+        const data = await response.json();
+        console.log("dailySpendingGoal from backend:", data.dailySpendingGoal);
+        globalDailySpendingGoal = data.dailySpendingGoal || 0; // Set the global variable
+      } catch (error) {
+        console.error('Error fetching daily spending goal:', error);
+      } finally {
+        await fetchExpenses();
+      }
+    };
+    fetchData();
   }, [userId]);
 
   const handleDateChange = (date) => {
@@ -71,8 +75,8 @@ function DashboardPage({ userId }) {
 
   useEffect(() => {
     // Calculate pie chart data for the current month
-    const currentMonth = calendarViewDate.getMonth(); // Use calendarViewDate
-    const currentYear = calendarViewDate.getFullYear(); // Use calendarViewDate
+    const currentMonth = calendarViewDate.getMonth();
+    const currentYear = calendarViewDate.getFullYear();
 
     const monthlyExpenses = allExpenses.filter((expense) => {
       const expenseDate = new Date(expense.date);
@@ -112,52 +116,47 @@ function DashboardPage({ userId }) {
         },
       ],
     });
-  }, [allExpenses, calendarViewDate]); // Re-calculate when allExpenses or calendarViewDate changes
-
-  const getTileClassName = ({ date, view }) => {
-    if (view === 'month') {
-      return 'react-calendar__tile'; // Always return the default class
-    }
-  };
+  }, [allExpenses, calendarViewDate]);
 
   const getTileContent = ({ date, view }) => {
-    if (view === 'month') {
+    if (view === 'month' && !isLoading) {
       const formattedDate = date.toISOString().split('T')[0];
       const dailyTotal = allExpenses.reduce((total, expense) => {
-        if (expense.date.substring(0, 10) === formattedDate) {
+        const expenseDate = expense.date.substring(0, 10);
+        if (expenseDate === formattedDate) {
           return total + expense.cost;
         }
         return total;
       }, 0);
 
-      let className = '';
-      if (dailyTotal > dailySpendingGoal) {
-        className = 'over-budget';
-      } else if (dailyTotal > dailySpendingGoal * 0.75) {
-        className = 'close-to-budget';
+      console.log(`Date: ${formattedDate}, dailyTotal: ${dailyTotal}, dailySpendingGoal: ${globalDailySpendingGoal}, yellow: ${globalDailySpendingGoal*.75}`);
+
+      let className = 'react-calendar__tile ';
+      if (dailyTotal > globalDailySpendingGoal) {
+        className += 'over-budget';
+      } else if (globalDailySpendingGoal > dailyTotal && dailyTotal > globalDailySpendingGoal * 0.75) {
+        className += 'close-to-budget';
       } else {
-        className = 'within-budget';
+        className += 'within-budget';
       }
 
-      return (
-        <div className={`react-calendar__tile__date ${className}`}>
-          {date.getDate()}
-        </div>
-      );
+      console.log(`className for ${formattedDate}: ${className}`);
+
+      return <div className={className}></div>;
     }
     return null;
   };
 
-    // Calculate total daily spending
-    const totalDailySpending = dailyExpenses.reduce(
-        (total, expense) => total + expense.cost,
-        0
-    );
+  // Calculate total daily spending
+  const totalDailySpending = dailyExpenses.reduce(
+    (total, expense) => total + expense.cost,
+    0
+  );
 
-    useEffect(() => {
-      // Set calendarViewDate to the current date when the component mounts
-      setCalendarViewDate(new Date());
-    }, []);
+  useEffect(() => {
+    // Set calendarViewDate to the current date when the component mounts
+    setCalendarViewDate(new Date());
+  }, []);
 
   return (
     <div>
@@ -172,14 +171,17 @@ function DashboardPage({ userId }) {
         {/* Calendar */}
         <div>
           <h2>Select a Date</h2>
-          <Calendar
-            onChange={handleDateChange}
-            value={selectedDate}
-            locale="en-US"
-            tileClassName={getTileClassName}
-            tileContent={getTileContent}
-            onActiveStartDateChange={handleCalendarViewChange} // Add this line
-          />
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <Calendar
+              onChange={handleDateChange}
+              value={selectedDate}
+              locale="en-US"
+              tileContent={getTileContent}
+              onActiveStartDateChange={handleCalendarViewChange}
+            />
+          )}
         </div>
       </div>
 
