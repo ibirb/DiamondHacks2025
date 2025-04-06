@@ -1,7 +1,7 @@
 /* frontend/src/components/SideNavBar.css */
 .side-nav-bar {
     width: 200px; /* Default expanded width */
-    background-color: #f0f0f0;
+    background-color: #a6b896;
     padding: 20px;
     height: 100vh;
     position: fixed;
@@ -64,11 +64,13 @@
   }
   
   .side-nav-bar nav ul li a:hover {
-    background-color: #ddd;
+    background-color: #c0cdb5;
+    padding: 10px 10px 10px 3px;
+    
   }
   
   .nav-toggle-button {
-    background-color: #ddd;
+    background-color: #c0cdb5;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
@@ -80,14 +82,14 @@
   }
   
   .expand-nav-button {
-    background-color: #ddd;
+    background-color: #a6b896;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 11;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
   }
   
