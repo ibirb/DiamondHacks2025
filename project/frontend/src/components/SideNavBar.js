@@ -40,8 +40,8 @@ function SideNavBar({ onToggle }) {
               </Link>
             </li>
             <li>
-              <Link to="/finance">
-                <span className="nav-link-text">Finance</span>
+              <Link to="/saving-goals">
+                <span className="nav-link-text">Saving Goals</span>
               </Link>
             </li>
             <li>

@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
-import FinancePage from './components/FinancePage';
+import SavingGoalsPage from './components/SavingGoalsPage';
 import DashboardPage from './components/DashboardPage';
 import SignUpPage from './components/SignUpPage';
 import ExpenseLogPage from './components/ExpenseLogPage'; // Import ExpenseLogPage
 import ChatBotPage from './components/ChatBotPage'; // Import ChatBotPage
 import SideNavBar from './components/SideNavBar'; // Import SideNavBar
+
 
 function ProtectedRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
@@ -55,10 +56,10 @@ function App() {
               }
             />
             <Route
-              path="/finance"
+              path="/saving-goals"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <FinancePage />
+                  <SavingGoalsPage />
                 </ProtectedRoute>
               }
             />

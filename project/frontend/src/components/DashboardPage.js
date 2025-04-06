@@ -161,7 +161,7 @@ function DashboardPage({ userId }) {
 
   return (
     <div>
-      <h1>Dashboard Page</h1>
+      <h1>Dashboard</h1>
       <div style={{ display: 'flex', gap: '20px' }}>
         {/* Pie Chart */}
         <div style={{ width: '400px' }}>
