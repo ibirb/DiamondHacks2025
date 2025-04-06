@@ -1,5 +1,7 @@
 // frontend/src/components/ExpenseLogPage.js
 import React, { useState, useEffect } from 'react';
+import './ExpenseLogPage.css';
+
 
 function ExpenseLogPage({ userId }) { // Accept userId as a prop
     const [expenses, setExpenses] = useState([]);
@@ -67,13 +69,16 @@ function ExpenseLogPage({ userId }) { // Accept userId as a prop
     };
 
     return (
-        <div>
+        <div className="container">
+        <div className="split1">
             <h1>Expense Log</h1>
 
             {/* Expense Form */}
             <form onSubmit={handleSubmit}>
                 <div>
+                    <div className="form-group">
                     <label htmlFor="category">Category:</label>
+                    </div>
                     <select
                         id="category"
                         value={category}
@@ -89,7 +94,9 @@ function ExpenseLogPage({ userId }) { // Accept userId as a prop
                     </select>
                 </div>
                 <div>
+                <div className="form-group">
                     <label htmlFor="name">Name:</label>
+                </div>
                     <input
                         type="text"
                         id="name"
@@ -99,7 +106,9 @@ function ExpenseLogPage({ userId }) { // Accept userId as a prop
                     />
                 </div>
                 <div>
+                <div className="form-group">
                     <label htmlFor="cost">Cost:</label>
+                </div>
                     <input
                         type="number"
                         id="cost"
@@ -109,7 +118,9 @@ function ExpenseLogPage({ userId }) { // Accept userId as a prop
                     />
                 </div>
                 <div>
+                <div className="form-group">
                     <label htmlFor="date">Date:</label>
+                </div>
                     <input
                         type="date"
                         id="date"
@@ -117,19 +128,36 @@ function ExpenseLogPage({ userId }) { // Accept userId as a prop
                         onChange={(e) => setDate(e.target.value)}
                     />
                 </div>
-                <button type="submit">Add Expense</button>
+                <button type="submit" className="add-expense-button">Add Expense</button>
             </form>
             {message && <div>{message}</div>}
-
-            {/* Expense List */}
-            <h2>Expenses</h2>
-            <ul>
-                {expenses.map((expense) => (
-                    <li key={expense._id}>
-                        {expense.date.substring(0, 10)} - {expense.category}: {expense.name} - ${expense.cost}
-                    </li>
-                ))}
-            </ul>
+        </div>
+        <div className="split2">
+        {/* Expense List */}
+        <h2>Expenses</h2>
+        <div className="expense-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th className="date-column">Date</th>
+                <th className="category-column">Category</th>
+                <th className="name-column">Name</th>
+                <th className="cost-column">Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {expenses.map((expense) => (
+                <tr key={expense._id}>
+                  <td className="date-column">{expense.date.substring(0, 10)}</td>
+                  <td className="category-column">{expense.category}</td>
+                  <td className="name-column">{expense.name}</td>
+                  <td className="cost-column">${expense.cost}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
         </div>
     );
 }
