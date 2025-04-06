@@ -76,8 +76,8 @@ app.get('/api/users/:userId', async (req, res) => {
 app.post('/api/expenses', async (req, res) => {
   const { user, category, name, cost, date } = req.body;
 
-  if (!user || !category || !name || !cost) {
-    return res.status(400).json({ error: 'User, category, name, and cost are required' });
+  if (!user || !category || !name || !cost || !date) {
+    return res.status(400).json({ error: 'User, category, name, cost, and date are required' });
   }
 
   try {
