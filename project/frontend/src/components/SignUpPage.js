@@ -1,5 +1,7 @@
 // frontend/src/components/SignUpPage.js
 import React, { useState } from 'react';
+import './SignUpPage.css';
+
 
 function SignUpPage() {
   const [username, setUsername] = useState('');
@@ -38,10 +40,13 @@ function SignUpPage() {
 
   return (
     <div>
+    <div className="login-form-container">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div>
+        <div className="form-group">
           <label htmlFor="username">Username:</label>
+          </div>
           <input
             type="text"
             id="username"
@@ -51,7 +56,9 @@ function SignUpPage() {
           />
         </div>
         <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
+          </div>
           <input
             type="password"
             id="password"
@@ -61,7 +68,9 @@ function SignUpPage() {
           />
         </div>
         <div>
+            <div className="form-group">
           <label htmlFor="name">Name:</label>
+          </div>
           <input
             type="text"
             id="name"
@@ -71,7 +80,9 @@ function SignUpPage() {
           />
         </div>
         <div>
+            <div className="spending-goal">
           <label htmlFor="dailySpendingGoal">Daily Spending Goal:</label>
+          </div>
           <input
             type="number"
             id="dailySpendingGoal"
@@ -80,9 +91,10 @@ function SignUpPage() {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="signup-button">Sign Up</button>
       </form>
       {message && <div>{message}</div>}
+    </div>
     </div>
   );
 }
