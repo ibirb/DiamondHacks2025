@@ -1,0 +1,125 @@
+/* frontend/src/components/LoginPage.css */
+body { 
+    background-color: #bbceb2;
+    font-family: Verdana;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh
+}
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #bbceb2;
+  }
+
+  .login-form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 450px;
+    height: 400px;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .logo {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  .login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    height: 50px;
+  }
+  
+  .login-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 30px;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .message {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  .sign-up-button {
+    background-color: #fafafa;
+    color: #505050;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .sign-up-button:hover { 
+    background-color: #dddcdc;
+    color: #505050;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  

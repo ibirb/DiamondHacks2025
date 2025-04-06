@@ -1,6 +1,7 @@
 // frontend/src/components/LoginPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './LoginPage.css';
 
 function LoginPage({ onLogin }) {
     const [username, setUsername] = useState('');
@@ -42,38 +43,45 @@ function LoginPage({ onLogin }) {
     };
 
     return (
-        <div className="login-page">
-            <div className="login-container">
-                <h1 className="login-title">Login</h1>
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username">Username:</label>
-                        <input
-                            type="text"
-                            id="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="login-button">
-                        Login
-                    </button>
-                </form>
-                {message && <div className="login-message">{message}</div>}
+      <div>
+        <div className="login-form-container">
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div>  
+            <div className="form-group">
+            <label htmlFor="username">Username:</label> 
             </div>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            </div>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-button">Login</button >
+        </form>
+        <div>
+          <button type="submit" className="sign-up-button">
+            Create an Account
+          </button>
         </div>
+        {message && <div>{message}</div>}
+      </div>
+      </div>
     );
-}
+  }
 
 export default LoginPage;
