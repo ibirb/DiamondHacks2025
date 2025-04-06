@@ -25,14 +25,14 @@ app.get('/api/hello', (req, res) => {
 
 // API endpoint to create a new user
 app.post('/api/users', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, name, dailySpendingGoal } = req.body; // Extract new fields
 
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Username and password are required' });
+  if (!username || !password || !name || !dailySpendingGoal) { // Check for new fields
+    return res.status(400).json({ error: 'Username, password, name, and daily spending goal are required' });
   }
 
   try {
-    const newUser = await createUser(username, password);
+    const newUser = await createUser(username, password, name, dailySpendingGoal); // Pass new fields
     res.status(201).json(newUser); // Respond with the created user
   } catch (error) {
     res.status(500).json({ error: 'Failed to create user' });

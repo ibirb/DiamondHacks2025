@@ -15,6 +15,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true, // Name is now required
+  },
+  dailySpendingGoal: {
+    type: Number,
+    required: true, // Daily spending goal is now required
+  },
+  // You can add more fields here, like email, etc.
 });
 
 // Auto-incrementing ID plugin

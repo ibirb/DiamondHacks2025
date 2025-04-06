@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 function SignUpPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [dailySpendingGoal, setDailySpendingGoal] = useState('');
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (event) => {
@@ -15,7 +17,7 @@ function SignUpPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password, name, dailySpendingGoal }), // Send new fields
       });
 
       const data = await response.json();
@@ -24,6 +26,8 @@ function SignUpPage() {
         setMessage('User created successfully!');
         setUsername('');
         setPassword('');
+        setName('');
+        setDailySpendingGoal('');
       } else {
         setMessage(data.error || 'Failed to create user.');
       }
@@ -53,6 +57,26 @@ function SignUpPage() {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="dailySpendingGoal">Daily Spending Goal:</label>
+          <input
+            type="number"
+            id="dailySpendingGoal"
+            value={dailySpendingGoal}
+            onChange={(e) => setDailySpendingGoal(e.target.value)}
             required
           />
         </div>
