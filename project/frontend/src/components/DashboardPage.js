@@ -77,8 +77,8 @@ function DashboardPage({ userId }) {
     const monthlyExpenses = allExpenses.filter((expense) => {
       const expenseDate = new Date(expense.date);
       return (
-        expenseDate.getMonth() === currentMonth &&
-        expenseDate.getFullYear() === currentYear
+        expenseDate.getUTCMonth() === currentMonth &&
+        expenseDate.getUTCFullYear() === currentYear
       );
     });
 
