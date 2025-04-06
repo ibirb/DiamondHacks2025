@@ -7,6 +7,7 @@ const { loginUser } = require('./controllers/userController'); // Import the log
 const { createExpense, getExpensesByUser } = require('./controllers/expenseController'); // Import expense controller
 const chatBotRoutes = require('./routes/chatBotRoutes');
 const savingGoalRoutes = require('./routes/savingGoalRoutes');
+const { updateAmountSavedAutomatically } = require('./controllers/savingGoalController');
 require('dotenv').config(); 
 
 const app = express();
@@ -76,6 +77,15 @@ app.get('/api/users/:userId', async (req, res) => {
 });
 
 
+app.get('/api/update-amount-saved/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    await updateAmountSavedAutomatically(userId);
+    res.status(200).json({ message: 'Amount saved updated successfully.' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update amount saved.' });
+  }
+});
 
 // API endpoint to create a new expense
 app.post('/api/expenses', async (req, res) => {
