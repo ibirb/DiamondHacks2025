@@ -1,4 +1,5 @@
 # DiamondHacks2025
+BreadBox is both a financial planner and advisor all in one. With the app users will be able to log purchases, visualize their spending, calculates savings per-day, set long term goals, and discuss problematic spending habits.
 
 ## How we built it
 We utilized a combination of React, Node.js, MongoDB, and Google AI API Gemini. React powered our front end while Node.js bridged the backend, handling requests and processing data. With this setup, we leveraged MongoDB to manage user data allowing us to create multiple user accounts, track individual spending habits, and store detailed transaction histories. User data is then sent to Google AI API Gemini, which analyzes spending patterns and generates personalized insights. Aside from our AI, our project also parses user data from MongoDB to track net spending and savings of each user to create a personalized financial plan based on how much they want to save.
