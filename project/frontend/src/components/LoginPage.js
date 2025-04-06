@@ -42,6 +42,10 @@ function LoginPage({ onLogin }) {
         }
     };
 
+    const handleSignUpClick = () => {
+      navigate('/signup'); // Redirect to the signup page
+    };
+
     return (
       <div>
         <div className="login-form-container">
@@ -74,7 +78,7 @@ function LoginPage({ onLogin }) {
           <button type="submit" className="login-button">Login</button >
         </form>
         <div>
-          <button type="submit" className="sign-up-button">
+          <button type="submit" className="sign-up-button" onClick={handleSignUpClick}>
             Create an Account
           </button>
         </div>
