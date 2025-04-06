@@ -1,1 +1,7 @@
 # DiamondHacks2025
+
+## How we built it
+We utilized a combination of React, Node.js, MongoDB, and Google AI API Gemini. React powered our front end while Node.js bridged the backend, handling requests and processing data. With this setup, we leveraged MongoDB to manage user data allowing us to create multiple user accounts, track individual spending habits, and store detailed transaction histories. User data is then sent to Google AI API Gemini, which analyzes spending patterns and generates personalized insights. Aside from our AI, our project also parses user data from MongoDB to track net spending and savings of each user to create a personalized financial plan based on how much they want to save.
+
+## Challenges we ran into
+One of the major problems that our team encountered was figuring out how to properly populate certain imported items from react. For example, the imported calendar our team included was meant to track a user's daily spending throughout the months, properly updating the status of each individual day depending on how much was spent. Unlike what it was meant to do, the calendar did not properly log the amount spent for each day but instead threw the amount into a random one. Another huge hurdle for our team was the initial creation of the connection to the database as well as extracting/retrieving data from it. Honorable Mentions: our team had lots of trouble figuring out how to make our containers/elements throughout the project look presentable through html and css.
