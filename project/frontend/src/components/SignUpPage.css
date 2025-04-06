@@ -1,74 +1,78 @@
-body { 
-    background-color: #bbceb2;
-    font-family: Verdana;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh
+/* frontend/src/components/SignUpPage.css */
+
+body {
+  background-color: #bbceb2;
+  font-family: Verdana;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .login-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #bbceb2;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #bbceb2;
+}
 
 .login-form-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 450px;
-    height: 500px;
-  }
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 450px;
+  height: 500px;
+}
 
-  .form-group {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    text-align: left;
-    border-radius: 15px;
-  }
+.form-group {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: left;
+  border-radius: 15px;
+}
 
-  .spending-goal {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+.spending-goal {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 
-  .signup-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 50%;
-    height: 40px;
-    font-size: 18px;
-  }
-  
-  .signup-button:hover {
-    background-color: #0056b3;
-  }
+.signup-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 50%;
+  height: 40px;
+  font-size: 18px;
+}
 
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-sizing: border-box;
-    height: 50px;
-  }
+.signup-button:hover {
+  background-color: #0056b3;
+}
 
-  input[type="number"] {
-    width: 40%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-sizing: border-box;
-  }
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
+  height: 5px;
+}
+
+/* More specific selector for the daily spending goal input */
+input.daily-spending-goal-input[type="number"] {
+  width: 40%;
+  height: 20%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
+}

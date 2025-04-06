@@ -86,6 +86,7 @@ function SignUpPage() {
           <input
             type="number"
             id="dailySpendingGoal"
+            className="daily-spending-goal-input" 
             value={dailySpendingGoal}
             onChange={(e) => setDailySpendingGoal(e.target.value)}
             required
