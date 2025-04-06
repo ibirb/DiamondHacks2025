@@ -19,7 +19,7 @@ async function getExpensesByUser(userId) {
 
 async function generateChatResponse(userId, prompt) {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Updated model name
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // Updated model name
 
         // Get user's expenses
         const userExpenses = await getExpensesByUser(userId);
@@ -42,7 +42,7 @@ async function generateChatResponse(userId, prompt) {
         const chat = model.startChat({
             history: [],
             generationConfig: {
-                maxOutputTokens: 200,
+                maxOutputTokens: 1000,
             },
         });
 

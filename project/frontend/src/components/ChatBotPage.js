@@ -1,7 +1,8 @@
 // frontend/src/components/ChatBotPage.js
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
-import './ChatBotPage.css'; // Import the CSS file
+import './ChatBotPage.css';
+import SideNavBar from './SideNavBar';
 
 function ChatBotPage() {
   const [prompt, setPrompt] = useState('');
@@ -9,12 +10,18 @@ function ChatBotPage() {
   const userId = 1; // Replace with the actual user ID
   const chatHistoryRef = useRef(null);
   const [isBotTyping, setIsBotTyping] = useState(false);
+  const [isNavBarExpanded, setIsNavBarExpanded] = useState(false);
+
+  const handleNavBarToggle = (isExpanded) => {
+    setIsNavBarExpanded(isExpanded);
+  };
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
 
     const newUserMessage = { role: 'user', content: prompt };
-    setChatHistory((prevHistory) => [...prevHistory, newUserMessage]);
+    setChatHistory((prevHistory) => [...prevHistory, newUserMessage]); // Add user message immediately
+    const currentPrompt = prompt; // Store the current prompt
     setPrompt('');
     setIsBotTyping(true);
 
@@ -24,7 +31,7 @@ function ChatBotPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ prompt: currentPrompt }), // Use the stored prompt
       });
 
       if (!res.ok) {
@@ -42,7 +49,7 @@ function ChatBotPage() {
     } finally {
       setIsBotTyping(false);
     }
-  }, [userId]);
+  }, [userId, prompt]);
 
   useEffect(() => {
     if (chatHistoryRef.current) {
@@ -51,35 +58,37 @@ function ChatBotPage() {
   }, [chatHistory]);
 
   return (
-    <div className="chat-bot-container">
-      <h1>Chat Bot Page</h1>
+    <div style={{ display: 'flex', width: '100%' }}>
+      <SideNavBar onToggle={handleNavBarToggle} />
+      <div className="chat-bot-container">
+        <h1>Chat with AI Bot</h1>
+        <div className="chat-history" ref={chatHistoryRef}>
+          {chatHistory.map((message, index) => (
+            <div key={index} className={`chat-message ${message.role}-message`}>
+              <strong>{message.role === 'user' ? 'You' : 'Bot'}:</strong>{' '}
+              <ReactMarkdown>{message.content}</ReactMarkdown>
+            </div>
+          ))}
+          {isBotTyping && (
+            <div className="chat-message bot-message">
+              <strong>Bot:</strong> Typing...
+            </div>
+          )}
+        </div>
 
-      <div className="chat-history" ref={chatHistoryRef}>
-        {chatHistory.map((message, index) => (
-          <div key={index} className={`chat-message ${message.role}-message`}>
-            <strong>{message.role === 'user' ? 'You' : 'Bot'}:</strong>{' '}
-            <ReactMarkdown>{message.content}</ReactMarkdown>
-          </div>
-        ))}
-        {isBotTyping && (
-          <div className="chat-message bot-message">
-            <strong>Bot:</strong> Typing...
-          </div>
-        )}
+        <form onSubmit={handleSubmit} className="chat-form">
+          <input
+            type="text"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Enter your prompt"
+            className="chat-input"
+          />
+          <button type="submit" className="chat-button" disabled={isBotTyping}>
+            Send
+          </button>
+        </form>
       </div>
-
-      <form onSubmit={handleSubmit} className="chat-form">
-        <input
-          type="text"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Enter your prompt"
-          className="chat-input"
-        />
-        <button type="submit" className="chat-button" disabled={isBotTyping}>
-          Send
-        </button>
-      </form>
     </div>
   );
 }
